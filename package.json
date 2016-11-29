@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "bignumber.js": "^3.0.1",
+    "string.prototype.padstart": "^3.0.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "watch": "mocha -w"
+  },
+  "name": "float80",
+  "version": "1.0.0",
+  "description": "Read 80-bit Extended Floating Point Numbers from buffers",
+  "main": "src/float80.js",
+  "repository": "git@github.com:brianmhunt/float80",
+  "author": "Brian M Hunt <bmh@tko.io>",
+  "license": "MIT"
+}
