@@ -11,7 +11,7 @@ Until now, anyway.
 Get this library with 
 
 ```sh
-$ npm install float80`.
+$ npm install float80
 ```
 
 
