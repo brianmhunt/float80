@@ -2,7 +2,7 @@
 const assert = require('assert')
 
 const Float80 = require('../src/float80')
-const Float42 = require('../src/float48')
+const Float48 = require('../src/float48')
 
 /**
  * This is a list of trials.
@@ -44,7 +44,7 @@ describe("Float80.fromBytes", () => {
 })
 
 
-const TRIALS_42 = [
+const TRIALS_48 = [
   ["00 00 00 00 00 00", "0"],
   ["ff ff ff ff ff 00", "0"],
   ["00 00 00 00 00 81", "1"],
@@ -56,12 +56,12 @@ const TRIALS_42 = [
   ["f4 23 f4 00 d2 94", "-999999.2502"]
 ]
 
-describe("Float42.fromBytes", () => {
-  TRIALS_42.forEach((trial) => {
+describe("Float48.fromBytes", () => {
+  TRIALS_48.forEach((trial) => {
     it(`Converts ${trial[0]} to ${trial[1]}`, () => {
       const bytes = trial[0].split(" ").map((hexStr) => parseInt(hexStr, 16))
       assert.equal(
-        Float42.fromBytes(bytes).toString(),
+        Float48.fromBytes(bytes).toString(),
         trial[1]
       )
     })
