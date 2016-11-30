@@ -18,12 +18,15 @@ $ npm install float80
 #### Usage
 
 ```javascript
->>> const Float80 = require('float80')
+>>> const {Float80} = require('float80')
 
 >>> f = Float80.fromBytes([0x3f, 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
 
 >>> f.toString()
 1
+
+>>> f.asNumber()
+<BigNumber: [String: 1]>
 ```
 
 The number parsed by Float80 is stored in a [BigNumber](https://github.com/MikeMcl/bignumber.js/) instance, and exposed by the `asNumber` function.
@@ -54,6 +57,12 @@ int main(int argc, char ** argv) {
   }
 }
 ```
+
+#### Bonus: 48-bit floats.
+
+The weird 48-bit float parsing is available in `Float48` class.
+
+Same API as `Float80`.
 
 
 #### License

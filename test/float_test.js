@@ -2,13 +2,14 @@
 const assert = require('assert')
 
 const Float80 = require('../src/float80')
+const Float42 = require('../src/float48')
 
 /**
  * This is a list of trials.
  *
  * These are exponent first, mantissa last (i.e. big endian).
  */
-const TRIALS = [
+const TRIALS_80 = [
   // Byte offset:
   // 9  8  7  6  5  4  3  2  1  0
   ["3f ff 80 00 00 00 00 00 00 00", '1'],
@@ -30,12 +31,37 @@ const TRIALS = [
   ["ff ff 80 00 00 00 00 00 00 00", "-Infinity"],
 ]
 
-describe("getFloat80", () => {
-  TRIALS.forEach((trial) => {
+describe("Float80.fromBytes", () => {
+  TRIALS_80.forEach((trial) => {
     it(`Converts ${trial[0]} to ${trial[1]}`, () => {
       const bytes = trial[0].split(" ").map((hexStr) => parseInt(hexStr, 16))
       assert.equal(
         Float80.fromBytes(bytes).toString(),
+        trial[1]
+      )
+    })
+  })
+})
+
+
+const TRIALS_42 = [
+  ["00 00 00 00 00 00", "0"],
+  ["ff ff ff ff ff 00", "0"],
+  ["00 00 00 00 00 81", "1"],
+  ["80 00 00 00 00 81", "-1"],
+  ["00 00 00 00 00 82", "2"],
+  ["40 00 00 00 00 81", "1.5"],
+  ["20 00 00 00 00 82", "2.5"],
+  ["74 23 f4 00 d2 94", "999999.2502"],
+  ["f4 23 f4 00 d2 94", "-999999.2502"]
+]
+
+describe("Float42.fromBytes", () => {
+  TRIALS_42.forEach((trial) => {
+    it(`Converts ${trial[0]} to ${trial[1]}`, () => {
+      const bytes = trial[0].split(" ").map((hexStr) => parseInt(hexStr, 16))
+      assert.equal(
+        Float42.fromBytes(bytes).toString(),
         trial[1]
       )
     })
